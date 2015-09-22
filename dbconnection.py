@@ -9,12 +9,10 @@ def getconnection(host, user, password, db_name, instaneName=None):
         return conn
     else:
         conn = pymssql.connect
-        (
-            host + '\\' + instaneName,
+        (host + '\\' + instaneName,
             user,
             password,
-            db_name
-        )
+            db_name)
         return conn
 
 
@@ -51,8 +49,7 @@ def getDependencia(dependencia):
 def getIdProveedor(conn, cod_proveedor):
     cur = conn.cursor()
     cur.execute(
-        'SELECT nit_prov FROM TAF_PROVEEDOR WHERE cod_prov=%s' % cod_proveedor
-     )
+        'SELECT nit_prov FROM TAF_PROVEEDOR WHERE cod_prov=%s' % cod_proveedor)
     return cur.fetchone()
 
 
@@ -67,7 +64,7 @@ def insertData(conn, sql_fragment, data):
     for col in DB_DESTINT['COLUMNS']:
         item_data = data[DB_DESTINT['COLUMNS'][col]]
         if col == 'ACT_Codigo_Activo':
-            item_data = item_data[len(item_data)-4:len(item_data)]
+            item_data = item_data[len(item_data) - 4:len(item_data)]
 
         if type(item_data) is datetime.datetime:
             item_data = item_data.strftime('%Y-%d-%m')
