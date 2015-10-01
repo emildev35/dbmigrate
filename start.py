@@ -33,16 +33,10 @@ sql_insert = \
     'INSERT INTO Activos(%s)' % (','.join(DB_DESTINT['COLUMNS']))
 
 for activo in list_activos_a:
-    insertData(conn, sql_insert, activo)
+    print activo
+    # insertData(conn, sql_insert, activo)
 
 print "Numero de Activos Leidos " + str(len(list_activos_a))
-
-
-
-
-
-
-
 
 cursor.execute('SELECT * FROM Activos')
 list_activos = cursor.fetchall()

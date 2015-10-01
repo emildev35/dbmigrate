@@ -8,11 +8,7 @@ def getconnection(host, user, password, db_name, instaneName=None):
         conn = pymssql.connect(host, user, password, db_name)
         return conn
     else:
-        conn = pymssql.connect
-        (host + '\\' + instaneName,
-            user,
-            password,
-            db_name)
+        conn = pymssql.connect(host + '\\' + instaneName, user, password, db_name)
         return conn
 
 
@@ -67,7 +63,9 @@ def insertData(conn, sql_fragment, data):
             item_data = item_data[len(item_data) - 4:len(item_data)]
 
         if type(item_data) is datetime.datetime:
-            item_data = item_data.strftime('%Y-%d-%m')
+            if item_data < datetime.datetime(2004, 12, 31):
+                item_data = item_data.strftime('%Y-%m-%d') + 'T00:00:00'
+            continue
         if type(item_data) is int:
             item_data = str(item_data)
         if type(item_data) is str:
