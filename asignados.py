@@ -3,7 +3,6 @@ from dbconnection import getconnection
 conn = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Registro')
 conn_rrh = getconnection('192.168.97.99\\ACTIVOS', 'sa', 'sa', 'RecursosHumanos')
 
-
 cursor = conn.cursor()
 
 cursor_rrhh = conn_rrh.cursor()
