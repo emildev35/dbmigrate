@@ -20,4 +20,3 @@ for r in l_usuarios:
 
 
 print len(l_usuarios)
-

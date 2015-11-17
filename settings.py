@@ -35,7 +35,7 @@ DB_DESTINT = {
         'ACT_Vida_Util': 'vida_util',
         'ACT_Fecha_Incorporacion': 'fecha_inc',
         'ACT_Fecha_Compra': 'fecha_compra',
-        'ACT_Valor': 'valor',
+        'ACT_Valor_Compra': 'valor',
         'ACT_Fuente_Financiamiento': 'cod_fuente',
         'ACT_Organismo_Financiador': 'cod_organismo',
         'ACT_NIT_Proveedor': 'cod_prov',

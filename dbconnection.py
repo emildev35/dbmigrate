@@ -63,9 +63,7 @@ def insertData(conn, sql_fragment, data):
             item_data = item_data[len(item_data) - 4:len(item_data)]
 
         if type(item_data) is datetime.datetime:
-            if item_data < datetime.datetime(2004, 12, 31):
-                item_data = item_data.strftime('%Y-%m-%d') + 'T00:00:00'
-            continue
+            item_data = item_data.strftime('%Y-%m-%d') + 'T00:00:00'
         if type(item_data) is int:
             item_data = str(item_data)
         if type(item_data) is str:
@@ -92,8 +90,6 @@ def insertData(conn, sql_fragment, data):
         cursor = conn.cursor()
         cursor.execute(sql_fragment)
         conn.commit()
-    except Exception, ex:
-        if 'The conversion of a varchar' in ex[1]:
-            print sql_fragment
-        else:
-            pass
+        print "OK"
+    except Exception:
+        conn.rollback()

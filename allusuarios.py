@@ -1,9 +1,6 @@
 from dbconnection import getconnection
 
 
-conn = getconnection('192.168.97.99\\ACTIVOS', 'sa', 'sa', 'RecursosHumanos')
-
-
 cursor = conn.cursor()
 
 archivo = open('rrhh.csv', 'r')

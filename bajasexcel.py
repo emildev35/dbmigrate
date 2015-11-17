@@ -40,18 +40,20 @@ for resolucion in resoluciones:
 
     try:
         "Insercion del Movimiento a la Base de Datos"
-        # cursor_nuevo.execute(sql_insertC % (cod_C, nro_resolucion, fecha))
+        cursor_nuevo.execute(sql_insertC % (cod_C, nro_resolucion, fecha))
         cursor.execute(sql_detalles % nro_resolucion)
         detalles = cursor.fetchall()
+        print '-' * 30
+        print nro_resolucion
+        print '-' * 30
         for detalle in detalles:
             cod = getCodigo(detalle[0])
             fecha_detalle = detalle[1].strftime('%Y-%m-%d') + 'T00:00:00'
             id_motivo = detalle[3]
             observacion = str(detalle[4].encode('utf8', 'ignore'))
-            cursor_nuevo.execute(sql_insertD % (cod_D, cod, id_motivo, observacion, fecha_detalle))
-            cod_D += 1
+            cursor_nuevo.execute(sql_insertD % (cod_C, cod, id_motivo, observacion, fecha_detalle))
+            print detalle
         conn_nuevo.commit()
     except Exception, ex:
         print ex
-    cod_D = 1
     cod_C += 1

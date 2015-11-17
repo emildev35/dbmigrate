@@ -3,7 +3,7 @@ from dateutil.relativedelta import relativedelta
 
 
 conn_old = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'ACTIVOS')
-conn_new = getconnection('192.168.97.99\\ACTIVOS', 'sa', 'sa', 'Activos')
+conn_new = getconnection('192.168.97.97', 'sa', 's4*Activos', 'Activos')
 cursor_old = conn_old.cursor()
 cursor_new = conn_new.cursor()
 cursor_old.execute("""
@@ -22,6 +22,8 @@ sqlInsertFecha = """
 
 for r in lSeries:
     codigo = r[0][len(r[0]) - 4:len(r[0])]
+    if codigo != 155:
+        continue
     serie = r[1]
     garantia = r[4]
     if r[4] is None:
