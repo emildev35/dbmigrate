@@ -42,13 +42,13 @@ cursor.execute("""
     SELECT dts.cod_per, dts.nro_doc, res.cod_act, res.fecha_asignacion
     FROM TRH_DATOSPERSONALES dts INNER JOIN
     Activos.dbo.TAF_RESPONSABLE res ON (dts.cod_per = res.cod_funcionario)
-    --WHERE res.estado = 1
+    WHERE res.estado = 1
     """)
 
 lista_asignador = cursor.fetchall()
 
 sql = """
-    UPDATE Activos SET ACT_CI_Empleado_Asignado='%s', ACT_Fecha_Asignacion='%s'
+    UPDATE Activos SET ACT_Fecha_Asignacion='%s'
     WHERE ACT_Codigo_Activo = %s
 """
 
@@ -58,7 +58,7 @@ cursor_rrhh = conn_rrh.cursor()
 
 for asig in lista_asignador:
     try:
-        cursor_rrhh.execute(sql % (asig[1], asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])]))
+        cursor_rrhh.execute(sql % (asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])]))
         conn_rrh.commit()
     except Exception, ex:
         print ex

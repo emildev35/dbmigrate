@@ -4,8 +4,8 @@ import xlrd
 conn = getconnection('192.168.97.97', 'sa', 's4*Activos', 'Activos')
 cursor = conn.cursor()
 
-w_tipos_cambio = xlrd.open_workbook('excels/tc_2009.xls')
-tipos_cambios = w_tipos_cambio.sheet_by_index(0)
+w_tipos_cambio = xlrd.open_workbook('excels/tc2011_2015.xls')
+tipos_cambios = w_tipos_cambio.sheet_by_index(2)
 
 sql = """
     DELETE FROM t_tipocambio WHERE d_fecha = '%s';
