@@ -93,3 +93,4 @@ def insertData(conn, sql_fragment, data):
         print "OK"
     except Exception:
         conn.rollback()
+        print "FALLO"

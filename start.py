@@ -5,14 +5,14 @@ from settings import DB_ORIGIN, DB_DESTINT
 
 conn_source = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Activos')
 conn_st = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Admin')
-conn = getconnection('192.168.97.99\\ACTIVOS', 'sa', 'sa', 'Activos')
+conn = getconnection('192.168.97.97', 'sa', 's4*Activos', 'Activos')
 
 cursor = conn.cursor(as_dict=True)
 
 cursor_source = conn_source.cursor(as_dict=True)
 
 sql_select_origin = \
-    'SELECT %s FROM TAF_ACTIVO' % (','.join(DB_ORIGIN['COLUMNS']))
+    'SELECT %s FROM TAF_ACTIVO where regional=\'STLP\' AND fecha_inc > \'2013-01-01T00:00:00\'' % (','.join(DB_ORIGIN['COLUMNS']))
 
 
 cursor_source.execute(sql_select_origin)

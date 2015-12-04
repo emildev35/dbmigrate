@@ -16,7 +16,7 @@ sql_activos = """
     UPDATE Activos SET ACT_CI_Empleado_Asignado='%s',ACT_Fecha_Asignacion='2015-11-26T00:00:00' , ACT_Dependencia=%d WHERE ACT_Codigo_Activo=%d
 """
 
-wb_asignaciones = xlrd.open_workbook('excels/NUEVAS ASIGNA SC 3.xlsx')
+wb_asignaciones = xlrd.open_workbook('excels/4334521.xlsx')
 asignacion = wb_asignaciones.sheet_by_index(0)
 
 
@@ -26,9 +26,9 @@ def getCodigo(oldCode):
     return int(oldCode)
 
 for i in range(asignacion.nrows):
-    ci = str(int(asignacion.cell(i, 1).value))
+    ci = str(int(asignacion.cell(i, 0).value))
     # codigo = getCodigo(str(int(asignacion.cell(i, 0).value)))
-    codigo = str(int(asignacion.cell(i, 0).value))
+    codigo = str(int(asignacion.cell(i, 1).value))
     cursor_rrhh.execute(sql_depedencia % ci)
     dependencia = cursor_rrhh.fetchone()[0]
     try:

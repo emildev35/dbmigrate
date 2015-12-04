@@ -58,8 +58,9 @@ cursor_rrhh = conn_rrh.cursor()
 
 for asig in lista_asignador:
     try:
-        cursor_rrhh.execute(sql % (asig[1], asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])]))
-        conn_rrh.commit()
+        # cursor_rrhh.execute(sql % (asig[1], asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])]))
+        # conn_rrh.commit()
+        print asig[1] + ';' + str(asig[2][len(asig[2]) - 4:len(asig[2])])
     except Exception, ex:
         print ex
         # print sql % (asig[1], asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])])

@@ -11,7 +11,7 @@ cursor_a = conn_a.cursor()
 cursor_a.execute("SELECT cod_act, descripcion, vida_util, fecha_inc, fecha_compra, valor, regional FROM TAF_ACTIVO WHERE cod_act <> 0")
 nombres = cursor_a.fetchall()
 
-sql = 'SELECT ACT_Codigo_Activo FROM Activos WHERE ACT_Codigo_Activo=\'%s\''
+sql = 'SELECT ACT_Nombre_Activo FROM Activos WHERE ACT_Codigo_Activo=\'%s\''
 
 
 def getCodigo(oldCode):
@@ -21,7 +21,7 @@ def getCodigo(oldCode):
 
 r = 0
 
-file_xls = xlsxwriter.Workbook('activos_nuevos.xlsx')
+file_xls = xlsxwriter.Workbook('excels/activos_n.xlsx')
 sheet = file_xls.add_worksheet()
 
 row = 0
@@ -31,6 +31,11 @@ for activo in nombres:
     cursor.execute(sql % codigo)
     nuevo_codigo = cursor.fetchone()
     if nuevo_codigo is None:
+        continue
+    nuevo_codigo = str(nuevo_codigo[0].encode('utf8', 'ignore'))
+    if nuevo_codigo[:4] != activo[1][:4]:
+        print nuevo_codigo
+        print activo[1]
         for i in range(len(activo)):
             sheet.write(row, i, activo[i])
         row += 1
