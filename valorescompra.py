@@ -2,7 +2,7 @@ from dbconnection import getconnection
 
 
 conn = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Activos')
-conn_act = getconnection('192.168.97.97', 'sa', 's4*Activos', 'Activos')
+conn_act = getconnection('192.168.97.99\\DESARROLLO', 'sa', 'ADMDesarrollo2015*', 'Activos')
 cursor = conn.cursor()
 cursor_act = conn_act.cursor()
 

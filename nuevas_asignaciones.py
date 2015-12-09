@@ -16,7 +16,7 @@ sql_activos = """
     UPDATE Activos SET ACT_CI_Empleado_Asignado='%s',ACT_Fecha_Asignacion='2015-11-26T00:00:00' , ACT_Dependencia=%d WHERE ACT_Codigo_Activo=%d
 """
 
-wb_asignaciones = xlrd.open_workbook('excels/NUEVAS ASIGNA SC 3.xlsx')
+wb_asignaciones = xlrd.open_workbook('excels/CORRECCIONES SEGUN INVENTARIO SANTA CRUZ.xlsx')
 asignacion = wb_asignaciones.sheet_by_index(0)
 
 
