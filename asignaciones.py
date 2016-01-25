@@ -1,8 +1,7 @@
 from dbconnection import getconnection
-import xlrd
 
 
-conn = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Registro')
+conn = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Registro'
 cursor = conn.cursor()
 
 cursor.execute("""

@@ -1,7 +1,12 @@
 from dbconnection import getconnection
 
 conn = getconnection('192.168.97.103', 'sa', 'ala_stg_2005', 'Registro')
-conn_rrh = getconnection('192.168.97.97', 'sa', 's4*Activos', 'RecursosHumanos')
+conn_rrh = getconnection(
+    '192.168.97.97',
+    'sa',
+    's4*Activos',
+    'RecursosHumanos'
+)
 
 cursor = conn.cursor()
 
@@ -12,7 +17,6 @@ cursor.execute("""
     FROM TRH_DATOSPERSONALES dts INNER JOIN
     Activos.dbo.TAF_RESPONSABLE res ON (dts.cod_per = res.cod_funcionario)
     """)
-
 
 cursor_rrhh.execute("""
     SELECT PER_CI_Empleado FROM Personal
@@ -58,10 +62,16 @@ cursor_rrhh = conn_rrh.cursor()
 
 for asig in lista_asignador:
     try:
-        cursor_rrhh.execute(sql % (asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])]))
+        cursor_rrhh.execute(sql % (
+            asig[3].strftime('%Y-%m-%d'),
+            asig[2][len(asig[2]) - 4:len(asig[2])])
+        )
         conn_rrh.commit()
     except Exception, ex:
         print ex
-        # print sql % (asig[1], asig[3].strftime('%Y-%m-%d'), asig[2][len(asig[2]) - 4:len(asig[2])])
+        # print sql %  \
+        # (asig[1],
+        # asig[3].strftime('%Y-%m-%d'),
+        # asig[2][len(asig[2]) - 4:len(asig[2])])
 
 print len(lista_asignador)

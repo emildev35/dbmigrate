@@ -27,7 +27,8 @@ for activo in activos:
 
 
 worksheet_caracteristicas = workbook.add_worksheet()
-sql_caracteristicas = 'SELECT * FROM Componentes WHERE COM_Codigo_Activo %s' % condicion
+sql_caracteristicas = 'SELECT * FROM Componentes WHERE COM_Codigo_Activo %s' \
+    % condicion
 
 cursor.execute(sql_caracteristicas)
 caracteristicas = cursor.fetchall()
@@ -44,7 +45,8 @@ for caracteristica in caracteristicas:
     col = 0
 
 worksheet_documento = workbook.add_worksheet()
-sql_documento = 'SELECT * FROM Documentos_Respaldo WHERE DOR_Codigo_Activo %s' % condicion
+sql_documento = 'SELECT * FROM Documentos_Respaldo WHERE DOR_Codigo_Activo %s' \
+    % condicion
 
 cursor.execute(sql_documento)
 documentos = cursor.fetchall()

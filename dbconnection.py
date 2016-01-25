@@ -2,13 +2,17 @@ import pymssql
 from settings import DB_DESTINT
 import datetime
 
-
+        
 def getconnection(host, user, password, db_name, instaneName=None):
     if instaneName is None:
         conn = pymssql.connect(host, user, password, db_name)
         return conn
     else:
-        conn = pymssql.connect(host + '\\' + instaneName, user, password, db_name)
+        conn = pymssql.connect(
+            host + '\\' + instaneName,
+            user,
+            password,
+            db_name)
         return conn
 
 
@@ -94,3 +98,12 @@ def insertData(conn, sql_fragment, data):
     except Exception:
         conn.rollback()
         print "FALLO"
+
+
+def execute_query(conn, query, modo='list'):
+    cur = conn.cursor(as_dict=True)
+    if modo == 'list':
+        cur = conn.cursor()
+    cur.execute(query)
+    result_list = cur.fetchall()
+    return result_list
